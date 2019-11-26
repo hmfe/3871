@@ -55,6 +55,12 @@ export function reducer(state, action) {
         searchQuery: ""
       };
     }
+    case "clearSearchHistory": {
+      return {
+        ...state,
+        searchHistory: []
+      };
+    }
     case "error":
       return {
         ...state,
