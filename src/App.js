@@ -1,6 +1,6 @@
 import React from "react";
-import ButtonPage from "./Views/Button";
-import HomePage from "./Views/Home";
+import ButtonPage from "./views/button";
+import HomePage from "./views/home";
 import "./App.scss";
 import { Route, NavLink, HashRouter } from "react-router-dom";
 

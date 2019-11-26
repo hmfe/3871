@@ -2,6 +2,7 @@ import React, { useEffect, useReducer } from "react";
 import { searchMovie } from "./actions";
 import { initialState, reducer } from "./reducer";
 import { useDebounce } from "./hooks";
+import IconButton from "./components/iconbutton";
 import "./styles.scss";
 
 const HomePage = () => {
@@ -24,35 +25,33 @@ const HomePage = () => {
         <div className={"search-container"}>
           <div className={"form"}>
             <form>
-              <div>
-                <input
-                  type="text"
-                  value={searchQuery}
-                  placeholder={"Search movie..."}
-                  onChange={event =>
-                    dispatch({
-                      type: "onChange",
-                      payload: {
-                        name: "search",
-                        value: event.target.value
-                      }
-                    })
-                  }
-                />
-                <button
-                  type="submit"
-                  onClick={() =>
-                    dispatch({
-                      type: "addToSearchHistory",
-                      payload: {
-                        value: searchQuery
-                      }
-                    })
-                  }
-                >
-                  Search
-                </button>
-              </div>
+              <input
+                type="text"
+                value={searchQuery}
+                placeholder={"Search movie..."}
+                onChange={event =>
+                  dispatch({
+                    type: "onChange",
+                    payload: {
+                      name: "search",
+                      value: event.target.value
+                    }
+                  })
+                }
+              />
+              <button
+                type="submit"
+                onClick={() =>
+                  dispatch({
+                    type: "addToSearchHistory",
+                    payload: {
+                      value: searchQuery
+                    }
+                  })
+                }
+              >
+                Search
+              </button>
               <button
                 type="button"
                 onClick={e => {
@@ -64,7 +63,7 @@ const HomePage = () => {
               </button>
             </form>
           </div>
-          <div>
+          <div className={"suggestions"}>
             <ul>
               {isSearching && <div>Searching...</div>}
               {error && <div>{error}</div>}
@@ -106,19 +105,20 @@ const HomePage = () => {
                       <span>
                         {savedSearch.timestamp.toLocaleString("sv-SE")}
                       </span>
-                      <button
-                        type="button"
+                      <span>
+                        <i className={"fa fa-trash-alt"} />
+                      </span>
+                      <IconButton
                         onClick={() =>
                           dispatch({
                             type: "removeFromSearchHistory",
-                            payload: {
-                              value: savedSearch.searchTerm
-                            }
+                            payload: { value: savedSearch.searchTerm }
                           })
                         }
-                      >
-                        Remove
-                      </button>
+                        text={""}
+                        ariaLabel={"Remove search item"}
+                        faIcon={"trash"}
+                      />
                     </li>
                   );
                 })}
@@ -126,15 +126,12 @@ const HomePage = () => {
             </div>
           </div>
           <div className={"clear-history"}>
-            <button
-              onClick={() =>
-                dispatch({
-                  type: "clearSearchHistory"
-                })
-              }
-            >
-              Clear search history
-            </button>
+            <IconButton
+              onClick={() => dispatch({ type: "clearSearchHistory" })}
+              text={"Clear search history"}
+              ariaLabel={"Clear search"}
+              faIcon={"minus"}
+            />
           </div>
         </div>
       </div>
