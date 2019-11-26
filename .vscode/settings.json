@@ -1,0 +1,10 @@
+{
+  "eslint.validate": [
+    {
+      "language": "javascript",
+      "autoFix": true
+    }
+  ],
+  "eslint.autoFixOnSave": true,
+  "editor.formatOnSave": true
+}
