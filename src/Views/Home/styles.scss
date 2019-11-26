@@ -11,13 +11,23 @@
 
     .search-container {
       width: 70%;
+
+      .form {
+        input {
+          border: 2px solid $darkGray;
+          height: 42px;
+          padding: 0 50px 0 15px;
+          font-size: 13px;
+          min-width: 300px;
+        }
+      }
     }
   }
   .search-history {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #fafafa;
+    background-color: $lightGray;
     min-width: 350px;
     min-height: 300px;
 

@@ -22,35 +22,37 @@ const HomePage = () => {
       <h1>3: Implement a simple search application</h1>
       <div className={"content-wrapper"}>
         <div className={"search-container"}>
-          <div>
+          <div className={"form"}>
             <form>
-              <input
-                type="text"
-                value={searchQuery}
-                placeholder={"Search movie..."}
-                onChange={event =>
-                  dispatch({
-                    type: "onChange",
-                    payload: {
-                      name: "search",
-                      value: event.target.value
-                    }
-                  })
-                }
-              />
-              <button
-                type="submit"
-                onClick={() =>
-                  dispatch({
-                    type: "addToSearchHistory",
-                    payload: {
-                      value: searchQuery
-                    }
-                  })
-                }
-              >
-                Search
-              </button>
+              <div>
+                <input
+                  type="text"
+                  value={searchQuery}
+                  placeholder={"Search movie..."}
+                  onChange={event =>
+                    dispatch({
+                      type: "onChange",
+                      payload: {
+                        name: "search",
+                        value: event.target.value
+                      }
+                    })
+                  }
+                />
+                <button
+                  type="submit"
+                  onClick={() =>
+                    dispatch({
+                      type: "addToSearchHistory",
+                      payload: {
+                        value: searchQuery
+                      }
+                    })
+                  }
+                >
+                  Search
+                </button>
+              </div>
               <button
                 type="button"
                 onClick={e => {
