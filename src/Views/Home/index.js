@@ -2,7 +2,7 @@ import React, { useEffect, useReducer, useState } from "react";
 import { searchMovie } from "./actions";
 import { initialState, reducer } from "./reducer";
 
-const HomePage = props => {
+const HomePage = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { movies, searchQuery, error, isSearching, searchHistory } = state;
   const debouncedSearchQuery = useDebounce(searchQuery, 1500);
