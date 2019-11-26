@@ -1,17 +1,17 @@
 import React, { useEffect, useReducer, useState } from "react";
-import { searchMovie } from "./actions";
+import { searchMovie, addToSearchHistory } from "./actions";
 import { initialState, reducer } from "./reducer";
 
 const HomePage = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { movies, searchQuery, error, isSearching } = state;
+  const { movies, searchQuery, error, isSearching, searchHistory } = state;
   const debouncedSearchQuery = useDebounce(searchQuery, 1500);
   useEffect(() => {
     if (debouncedSearchQuery) {
       dispatch({
         type: "setIsSearching"
       });
-      searchMovie(searchQuery).then(test);
+      searchMovie(searchQuery).then(dispatch);
     }
   }, [debouncedSearchQuery, searchQuery]);
 
@@ -19,29 +19,62 @@ const HomePage = props => {
     <div>
       <h1>3: Implement a simple search application</h1>
       <div>
-        <label>Search movie</label>
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={event =>
-            dispatch({
-              type: "onChange",
-              payload: {
-                name: "search",
-                value: event.target.value
+        <div>
+          <form>
+            <input
+              type="text"
+              value={searchQuery}
+              placeholder={"Search movie..."}
+              onChange={event =>
+                dispatch({
+                  type: "onChange",
+                  payload: {
+                    name: "search",
+                    value: event.target.value
+                  }
+                })
               }
-            })
-          }
-        ></input>
+            />
+            <button
+              type="submit"
+              onClick={() =>
+                dispatch({
+                  type: "addToSearchHistory",
+                  payload: {
+                    value: searchQuery
+                  }
+                })
+              }
+            >
+              Search
+            </button>
+          </form>
+        </div>
+        <div>
+          <ul>
+            {isSearching && <div>Searching...</div>}
+            {error && <div>{error}</div>}
+            {movies.map((movie, i) => {
+              return (
+                <li key={i}>
+                  {movie.Title}
+                  <button>Add to list</button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
       <div>
-        <ul>
-          {isSearching && <div>Searching...</div>}
-          {error && <div>{error}</div>}
-          {movies.map((movie, i) => {
-            return <li key={i}>{movie.Title}</li>;
-          })}
-        </ul>
+        <h1>Search history</h1>
+        <div>
+          <ul>
+            {searchHistory.length === 0 && <div>No saved searches</div>}
+            {searchHistory.map(title => {
+              return <li>{title}</li>;
+            })}
+          </ul>
+        </div>
       </div>
     </div>
   );

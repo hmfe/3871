@@ -2,7 +2,8 @@ export const initialState = {
   movies: [],
   searchQuery: "",
   isSearching: false,
-  error: ""
+  error: "",
+  searchHistory: []
 };
 
 export function reducer(state, action) {
@@ -16,7 +17,6 @@ export function reducer(state, action) {
       };
     }
     case "onChange": {
-      console.log(action.payload);
       return {
         ...state,
         searchQuery: action.payload.value
@@ -26,6 +26,14 @@ export function reducer(state, action) {
       return {
         ...state,
         isSearching: true
+      };
+    }
+    case "addToSearchHistory": {
+      const searchHistory = state.searchHistory;
+      searchHistory.push(action.payload.value);
+      return {
+        ...state,
+        searchHistory
       };
     }
     case "error":
