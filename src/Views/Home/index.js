@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
-import { searchMovie, addToSearchHistory } from "./actions";
+import { searchMovie } from "./actions";
 import { initialState, reducer } from "./reducer";
 
 const HomePage = props => {
@@ -48,6 +48,15 @@ const HomePage = props => {
             >
               Search
             </button>
+            <button
+              type="button"
+              onClick={e => {
+                e.preventDefault();
+                dispatch({ type: "clearSearchQuery" });
+              }}
+            >
+              Clear
+            </button>
           </form>
         </div>
         <div>
@@ -58,7 +67,19 @@ const HomePage = props => {
               return (
                 <li key={i}>
                   {movie.Title}
-                  <button>Add to list</button>
+                  <button
+                    onClick={() => {
+                      dispatch({
+                        type: "onChange",
+                        payload: {
+                          name: "search",
+                          value: movie.Title
+                        }
+                      });
+                    }}
+                  >
+                    Add to list
+                  </button>
                 </li>
               );
             })}
@@ -70,8 +91,28 @@ const HomePage = props => {
         <div>
           <ul>
             {searchHistory.length === 0 && <div>No saved searches</div>}
-            {searchHistory.map(title => {
-              return <li>{title}</li>;
+            {searchHistory.map((savedSearch, i) => {
+              return (
+                <li key={i}>
+                  <div>
+                    <span>{savedSearch.searchTerm}</span>
+                    <span>{savedSearch.timestamp.toLocaleString("sv-SE")}</span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        dispatch({
+                          type: "removeFromSearchHistory",
+                          payload: {
+                            value: savedSearch.searchTerm
+                          }
+                        })
+                      }
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </li>
+              );
             })}
           </ul>
         </div>
