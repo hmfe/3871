@@ -4,7 +4,7 @@ class ButtonPage extends Component {
   render() {
     return (
       <div>
-        <h2>Button here!</h2>
+        <h1>1: CSS-wizardry</h1>
         <Button text="Delete" ariaLabel="Delete" />
       </div>
     );
