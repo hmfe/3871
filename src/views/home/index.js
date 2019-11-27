@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from "react";
 import { searchMovie } from "./actions";
 import { initialState, reducer } from "./reducer";
 import { useDebounce } from "./hooks";
-import IconButton from "./components/iconbutton";
+import IconButton from "./components/Iconbutton";
 import "./styles.scss";
 
 const HomePage = () => {
@@ -11,6 +11,9 @@ const HomePage = () => {
   const debouncedSearchQuery = useDebounce(searchQuery, 1500);
   useEffect(() => {
     if (debouncedSearchQuery) {
+      if (!searchQuery || searchQuery.length < 3) {
+        return dispatch({ type: "clearMovies" });
+      }
       dispatch({
         type: "setIsSearching"
       });
@@ -29,6 +32,7 @@ const HomePage = () => {
                 type="text"
                 value={searchQuery}
                 placeholder={"Search movie..."}
+                aria-label="Enter search text"
                 onChange={event =>
                   dispatch({
                     type: "onChange",
@@ -50,19 +54,11 @@ const HomePage = () => {
                   })
                 }
               >
-                Search
-              </button>
-              <button
-                type="button"
-                onClick={e => {
-                  e.preventDefault();
-                  dispatch({ type: "clearSearchQuery" });
-                }}
-              >
-                Clear
+                <i className="fa fa-search" />
               </button>
             </form>
           </div>
+          <div className={"tooltip"}></div>
           <div className={"suggestions"}>
             <ul>
               {isSearching && <div>Searching...</div>}
@@ -70,8 +66,8 @@ const HomePage = () => {
               {movies.map((movie, i) => {
                 return (
                   <li key={i}>
-                    {movie.Title}
-                    <button
+                    <div
+                      className={"search-hit"}
                       onClick={() => {
                         dispatch({
                           type: "onChange",
@@ -82,8 +78,20 @@ const HomePage = () => {
                         });
                       }}
                     >
-                      Add to list
-                    </button>
+                      {movie.Type === "movie" && (
+                        <span>
+                          <i className={"fa fa-film"} />
+                        </span>
+                      )}
+                      {movie.Type === "series" && (
+                        <span>
+                          <i className={"fa fa-star"} />
+                        </span>
+                      )}
+                      <span>
+                        Title: {movie.Title} ({movie.Year})
+                      </span>
+                    </div>
                   </li>
                 );
               })}

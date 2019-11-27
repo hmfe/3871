@@ -37,7 +37,8 @@ export function reducer(state, action) {
       searchHistory.push(historyObject);
       return {
         ...state,
-        searchHistory
+        searchHistory,
+        searchQuery: ""
       };
     }
     case "removeFromSearchHistory": {
@@ -49,10 +50,10 @@ export function reducer(state, action) {
         )
       };
     }
-    case "clearSearchQuery": {
+    case "clearMovies": {
       return {
         ...state,
-        searchQuery: ""
+        movies: []
       };
     }
     case "clearSearchHistory": {

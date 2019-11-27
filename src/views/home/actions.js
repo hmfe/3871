@@ -1,7 +1,7 @@
 import axios from "axios";
 import config from "../../api/config.json";
 
-export function searchMovie(query = "") {
+export function searchMovie(query) {
   return axios
     .get(`${config.baseUrl}/?apikey=${config.access_key}&s=${query}`)
     .then(result => {
