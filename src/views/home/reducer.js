@@ -17,9 +17,12 @@ export function reducer(state, action) {
       };
     }
     case "onChange": {
+      const isSearching =
+        action.payload.value && action.payload.value.length > 3;
       return {
         ...state,
-        searchQuery: action.payload.value
+        searchQuery: action.payload.value,
+        isSearching
       };
     }
     case "setIsSearching": {
@@ -38,7 +41,8 @@ export function reducer(state, action) {
       return {
         ...state,
         searchHistory,
-        searchQuery: ""
+        searchQuery: "",
+        isSearching: false
       };
     }
     case "removeFromSearchHistory": {

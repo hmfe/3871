@@ -20,6 +20,15 @@
         margin-bottom: 1rem;
       }
 
+      .tooltip {
+        font-size: 12px;
+        margin-top: 7px;
+
+        span {
+          margin: 0 0.35rem;
+        }
+      }
+
       .form {
         display: flex;
         justify-content: center;
@@ -52,6 +61,7 @@
           width: 300px;
           flex-grow: 2;
           border: none;
+          padding: 0 10px;
         }
 
         input:focus {
@@ -72,9 +82,17 @@
       .suggestions {
         ul {
           list-style: none;
+          padding: 0;
+          background-color: #fafafa;
+          margin: 2rem 6rem;
+          @media screen and (max-width: $mdlg) {
+            margin: 1rem 0;
+          }
+
           li {
             display: flex;
             justify-content: center;
+            padding: 0.25rem;
           }
           .search-hit {
             padding: 7px;

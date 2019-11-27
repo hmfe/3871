@@ -60,7 +60,17 @@ const HomePage = () => {
               </button>
             </form>
           </div>
-          <div className={"tooltip"}></div>
+          <div className={"tooltip"}>
+            <span>
+              <i className={"fa fa-font"} /> > 3
+            </span>
+            <span>
+              <i className={"fa fa-film"} /> Movie
+            </span>
+            <span>
+              <i className={"fa fa-star"} /> Series
+            </span>
+          </div>
           <div className={"suggestions"}>
             <ul>
               {isSearching && <div>Searching...</div>}
