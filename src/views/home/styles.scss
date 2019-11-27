@@ -1,0 +1,169 @@
+@import "src/assets/styles/_variables.scss";
+
+.home-container {
+  h1 {
+    margin: 50px;
+  }
+
+  .content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+    @media screen and (max-width: $mdlg) {
+      justify-content: center;
+    }
+
+    .search-container {
+      width: 65%;
+
+      @media screen and (max-width: $mdlg) {
+        margin-bottom: 1rem;
+      }
+
+      .tooltip {
+        font-size: 12px;
+        margin-top: 7px;
+
+        span {
+          margin: 0 0.35rem;
+        }
+      }
+
+      .form {
+        display: flex;
+        justify-content: center;
+
+        form {
+          display: flex;
+          flex-direction: row;
+          border: 1px solid grey;
+          width: 600px;
+
+          @media screen and (max-width: $xs) {
+            width: 300px;
+          }
+
+          label {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: grey;
+            font-size: 13px;
+            margin-left: 10px;
+            min-width: 100px;
+          }
+        }
+
+        input {
+          border: 2px solid $darkGray;
+          height: 42px;
+          font-size: 13px;
+          width: 300px;
+          flex-grow: 2;
+          border: none;
+          padding: 0 10px;
+        }
+
+        input:focus {
+          outline: none;
+        }
+
+        button {
+          border: 1px solid $lightGray;
+          color: $primaryDark;
+          cursor: pointer;
+          em {
+            font-size: 18px;
+            padding: 0.5rem;
+          }
+        }
+      }
+
+      .suggestions {
+        ul {
+          list-style: none;
+          padding: 0;
+          background-color: #fafafa;
+          margin: 2rem 6rem;
+          @media screen and (max-width: $mdlg) {
+            margin: 1rem 0;
+          }
+
+          li {
+            display: flex;
+            justify-content: center;
+            padding: 0.25rem;
+          }
+          .search-hit {
+            padding: 7px;
+            width: 50%;
+            cursor: pointer;
+            &:hover {
+              color: #cccccc;
+            }
+            @media screen and (max-width: $md) {
+              width: 100%;
+            }
+            span {
+              margin: 0 0.35rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  .search-history {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: $lightGray;
+    width: 400px;
+    min-height: 400px;
+
+    @media screen and (max-width: $mdlg) {
+      width: 80%;
+    }
+
+    .empty {
+      margin-top: 20px;
+    }
+
+    h2 {
+      background-color: #f7f1d5;
+      padding: 25px;
+      margin: 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li:nth-child(even) {
+        background: #eff0f1;
+      }
+      li {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 0;
+        span:first-child {
+          width: 125px;
+        }
+        span {
+          margin: 0 1rem;
+        }
+        button {
+          margin-right: 1rem;
+        }
+      }
+    }
+    .clear-history {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        margin: 0.75rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+@import "src/assets/styles/_variables.scss";
+
+.App {
+  text-align: center;
+  .navbar {
+    display: flex;
+    width: 100%;
+    background-color: $primaryDark;
+    color: white;
+  }
+  .title {
+    padding: 0.75rem;
+    background-color: $primaryBlue;
+  }
+  .links {
+    display: flex;
+    justify-content: center;
+    padding: 0.75rem;
+    > li {
+      list-style: none;
+      padding: 1rem;
+      border-right: 1px solid white;
+      cursor: pointer;
+      margin-right: 0.5rem;
+      a {
+        color: white;
+        text-decoration: none;
+      }
+    }
+  }
+}
