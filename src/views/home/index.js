@@ -29,6 +29,7 @@ const HomePage = () => {
           <div className={"form"}>
             <form>
               <input
+                name="Search movie"
                 type="text"
                 value={searchQuery}
                 placeholder={"Search movie..."}
@@ -45,6 +46,7 @@ const HomePage = () => {
               />
               <button
                 type="submit"
+                aria-label="Submit search-query"
                 onClick={() =>
                   dispatch({
                     type: "addToSearchHistory",
@@ -54,7 +56,7 @@ const HomePage = () => {
                   })
                 }
               >
-                <i className="fa fa-search" />
+                <em className="fa fa-search" />
               </button>
             </form>
           </div>
@@ -139,6 +141,7 @@ const HomePage = () => {
               text={"Clear search history"}
               ariaLabel={"Clear search"}
               faIcon={"minus"}
+              iconType={"em"}
             />
           </div>
         </div>

@@ -29,12 +29,25 @@
           flex-direction: row;
           border: 1px solid grey;
           width: 600px;
+
+          @media screen and (max-width: $xs) {
+            width: 300px;
+          }
+
+          label {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: grey;
+            font-size: 13px;
+            margin-left: 10px;
+            min-width: 100px;
+          }
         }
 
         input {
           border: 2px solid $darkGray;
           height: 42px;
-          padding: 0 10px;
           font-size: 13px;
           width: 300px;
           flex-grow: 2;
@@ -49,7 +62,7 @@
           border: 1px solid $lightGray;
           color: $primaryDark;
           cursor: pointer;
-          i {
+          em {
             font-size: 18px;
             padding: 0.5rem;
           }
